@@ -18,9 +18,36 @@ namespace OdeToFood.Data.Services
                 new Restaurant(){ Id=4, Name="Global Inn", Cuisine=CuisineType.Chinese},
             };
         }
+
+        public Restaurant Get(int id)
+        {
+           return restaurants.FirstOrDefault(x => x.Id == id);
+        }
+
         public IEnumerable<Restaurant> GetAll()
         {
           return  restaurants.OrderBy(r=>r.Name);
+        }
+
+        public bool Add(Restaurant restaurant)
+        {
+            restaurants.Add(restaurant);
+            restaurant.Id = restaurants.Select(r => r.Id).Max() + 1;
+            return true;
+        }
+
+        public bool Update(Restaurant restaurant)
+        {
+            bool updateStatus = false;
+            var dbEntity = Get(restaurant.Id);
+            if (dbEntity != null)
+            {
+                dbEntity.Name = restaurant.Name;
+                dbEntity.Cuisine = restaurant.Cuisine;
+                updateStatus = true;
+            }
+           
+            return updateStatus;
         }
     }
 }

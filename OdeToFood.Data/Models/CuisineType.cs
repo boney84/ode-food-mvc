@@ -13,7 +13,6 @@ namespace OdeToFood.Data.Models
         Continental,
         Chinese,
         Indian,
-        French,
-        Continenetal
+        French
     }
 }
