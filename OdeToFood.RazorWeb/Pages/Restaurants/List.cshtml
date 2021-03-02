@@ -1,0 +1,50 @@
+﻿@page
+@model OdeToFood.RazorWeb.Pages.Restaurants.ListModel
+@{
+}
+
+
+<h1>Restaurants</h1>
+<p>@Model.Message</p>
+
+<form method="get">
+
+    <div class="form-group">
+        <div class="input-group">
+            <input type="search" asp-for="SearchTerm"  class="form-control" />
+            <span class="input-group-btn">
+                <button class="btn btn-primary" type="submit">
+                    <i class="glyphicon glyphicon-search"></i>
+                </button>
+            </span>
+        </div>
+      
+    </div>
+</form>
+
+@if (Model.Restaurants.Count() > 0)
+{
+<table class="table">
+    <tr>
+        <th>Name</th>
+        <th>Location</th>
+        <th>Cuisine</th>
+    </tr>
+
+    @foreach (var restaurant in Model.Restaurants)
+    {
+        <tr>
+            <td><a asp-page="/Restaurants/Detail">@restaurant.Name</a> </td>
+            <td>@restaurant.Location</td>
+            <td>@restaurant.Cuisine</td>
+        </tr>
+
+    }
+</table>
+}
+else
+{
+    <div class="">
+        No Restaurants Found
+    </div>
+}
