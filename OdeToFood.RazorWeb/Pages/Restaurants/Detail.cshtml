@@ -1,4 +1,4 @@
-﻿@page
+﻿@page "{Id:int}"
 @model OdeToFood.RazorWeb.Pages.Restaurants.DetailModel
 @{
 }
@@ -14,5 +14,8 @@
     Cuisine: @Model.Restaurant.Cuisine
 </div>
 
-
+@if (Model.Message != null)
+{
+    <div class="alert alert-info">@Model.Message</div>
+}
 <a asp-page="/Restaurants/List">Back to List</a>

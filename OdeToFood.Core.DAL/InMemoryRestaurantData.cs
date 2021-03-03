@@ -15,12 +15,43 @@ namespace OdeToFood.Core.DAL
                 new Restaurant(){ Id=3, Name="Scott Stall", Location="Tennessee Road, Texas", Cuisine=CuisineType.Mexican}
             };
         }
+
+        public int Commit()
+        {
+            return 1;
+        }
+
+        public int Create(Restaurant restaurant)
+        {
+            int restaurantId = restaurants.Max(r => r.Id) + 1;
+            restaurant.Id = restaurantId;
+            restaurants.Add(restaurant);
+            return restaurantId;
+        }
+
+        public Restaurant GetRestaurantById(int id)
+        {
+            return restaurants.FirstOrDefault(r => r.Id == id);
+        }
+
         public IEnumerable<Restaurant> GetRestaurantsByName(string name= null)
         {
             return from r in restaurants
                    where string.IsNullOrEmpty(name) || r.Name.ToLowerInvariant().StartsWith(name.ToLowerInvariant())
                    orderby r.Name
                    select r;
+        }
+
+        public Restaurant Update(Restaurant restaurant)
+        {
+            var restaurantEntity = restaurants.FirstOrDefault(r => r.Id == restaurant.Id);
+            if (restaurantEntity != null)
+            {
+                restaurantEntity.Name = restaurant.Name;
+                restaurantEntity.Location = restaurant.Location;
+                restaurantEntity.Cuisine = restaurant.Cuisine;
+            }
+            return restaurantEntity;
         }
     }
 }
