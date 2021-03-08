@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Text;
 
 namespace OdeToFood.Core.DAL
@@ -9,7 +8,8 @@ namespace OdeToFood.Core.DAL
         IEnumerable<Restaurant> GetRestaurantsByName(string name);
         Restaurant GetRestaurantById(int id);
         Restaurant Update(Restaurant restaurant);
-        int Create(Restaurant restaurant);
+        Restaurant Create(Restaurant restaurant);
+        Restaurant Delete(int id);
         int Commit();
     }
 }

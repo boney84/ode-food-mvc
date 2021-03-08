@@ -27,8 +27,6 @@ namespace OdeToFood.RazorWeb.Pages.Restaurants
         public string SearchTerm { get; set; }
         public void OnGet(string SearchTerm)
         {
-            Message = config["Message"];
-          
             Restaurants = restaurantService.GetRestaurantsByName(SearchTerm);
         }
     }

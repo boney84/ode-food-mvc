@@ -45,6 +45,7 @@ namespace OdeToFood.RazorWeb.Pages.Restaurants
 
         public IActionResult OnPost()
         {
+            Restaurant restaurant;
             if (!ModelState.IsValid)
             {
                 Cuisines = htmlHelper.GetEnumSelectList<CuisineType>();
@@ -52,16 +53,16 @@ namespace OdeToFood.RazorWeb.Pages.Restaurants
             }
             if (Restaurant.Id == 0)
             {
-                restaurantData.Create(Restaurant);
+               restaurant= restaurantData.Create(Restaurant);
             }
             else
             {
-                restaurantData.Update(Restaurant);
+               restaurant= restaurantData.Update(Restaurant);
             }
+            restaurantData.Commit();
 
             TempData["Message"] = "Restaurant saved!";
-            restaurantData.Commit();
-            return RedirectToPage("./Detail",new {Id= Restaurant.Id });
+            return RedirectToPage("./Detail",new {Id= restaurant.Id });
         }
 
     }

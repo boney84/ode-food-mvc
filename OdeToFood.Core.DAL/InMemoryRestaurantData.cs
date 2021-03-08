@@ -21,12 +21,22 @@ namespace OdeToFood.Core.DAL
             return 1;
         }
 
-        public int Create(Restaurant restaurant)
+        public Restaurant Create(Restaurant restaurant)
         {
             int restaurantId = restaurants.Max(r => r.Id) + 1;
             restaurant.Id = restaurantId;
             restaurants.Add(restaurant);
-            return restaurantId;
+            return restaurant;
+        }
+
+        public Restaurant Delete(int id)
+        {
+            var restaurantEntity = restaurants.FirstOrDefault(r => r.Id == id);
+            if (restaurantEntity != null)
+            {
+                restaurants.Remove(restaurantEntity);
+            }
+            return restaurantEntity;
         }
 
         public Restaurant GetRestaurantById(int id)
