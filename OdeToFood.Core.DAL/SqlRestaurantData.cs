@@ -39,6 +39,11 @@ namespace OdeToFood.Core.DAL
             return dbcontext.Restaurants.FirstOrDefault(r=>r.Id== id);
         }
 
+        public int GetRestaurantCount()
+        {
+            return dbcontext.Restaurants.Count();
+        }
+
         public IEnumerable<Restaurant> GetRestaurantsByName(string name)
         {
            return dbcontext.Restaurants.Where(r => string.IsNullOrEmpty(name) || r.Name.Contains(name)).OrderBy(s=>s.Name);

@@ -10,6 +10,7 @@ namespace OdeToFood.Core.DAL
         Restaurant Update(Restaurant restaurant);
         Restaurant Create(Restaurant restaurant);
         Restaurant Delete(int id);
+        int GetRestaurantCount();
         int Commit();
     }
 }
