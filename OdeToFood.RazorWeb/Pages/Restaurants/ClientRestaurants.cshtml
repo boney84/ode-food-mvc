@@ -1,0 +1,16 @@
+﻿@page
+
+@section Scripts{
+    <script type="text/javascript">
+        $(function () {
+            $.ajax("/api/Restaurants", { method: "get" })
+                .then(function (response) {
+                    console.dir(response);
+                })
+                .catch(error => {
+                    console.log(error.message);
+                })
+        });
+    </script>
+ }
+

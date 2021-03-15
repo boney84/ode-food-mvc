@@ -52,6 +52,7 @@ namespace OdeToFood.RazorWeb
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapRazorPages();
+                endpoints.MapControllers();
             });
         }
     }
