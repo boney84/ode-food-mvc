@@ -1,0 +1,8 @@
+{
+  "name": "odetofood.razorweb",
+  "version": "1.0.0",
+  "dependencies": {
+    "datatables.net-dt": "^1.10.24",
+    "jquery-validate": "^2.0.0"
+  }
+}

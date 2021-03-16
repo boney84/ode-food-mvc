@@ -43,7 +43,8 @@ namespace OdeToFood.RazorWeb
             }
 
             app.UseHttpsRedirection();
-            app.UseStaticFiles();
+            //app.UseStaticFiles();
+            app.UseNodeModules();
 
             app.UseRouting();
 
