@@ -1,50 +1,64 @@
 ﻿@page
 @model OdeToFood.RazorWeb.Pages.Restaurants.ListModel
 @{
+    ViewData["Title"] = "Restaurant";
 }
 
 
 <h1>Restaurants</h1>
-<p>@Model.Message</p>
 
 <form method="get">
 
     <div class="form-group">
         <div class="input-group">
-            <input type="search" asp-for="SearchTerm"  class="form-control" />
+            <input type="search" asp-for="SearchTerm" class="form-control" />
             <span class="input-group-btn">
-                <button class="btn btn-primary" type="submit">Search
+                <button class="btn btn-primary" type="submit">
+                    Search
                     @*<i class="glyphicon glyphicon-search"></i>*@
                 </button>
             </span>
         </div>
-      
+
     </div>
 </form>
 
-<a asp-page="./Edit" class="btn btn-primary float-right">Create New</a> 
+@if (TempData["Message"] != null)
+{
+    <div class="alert alert-info">
+        @TempData["Message"]
+    </div>
+}
+
+<a asp-page="./Edit" class="btn btn-primary float-right">Create New</a>
 @if (Model.Restaurants.Count() > 0)
 {
-<table class="table">
-    <tr>
-        <th>Name</th>
-        <th>Location</th>
-        <th>Cuisine</th>
-        <th>Actions</th>
-    </tr>
-
-    @foreach (var restaurant in Model.Restaurants)
-    {
+    <table class="table">
         <tr>
-            <td><a asp-page="./Detail" asp-route-Id="@restaurant.Id">@restaurant.Name</a> </td>
-            <td>@restaurant.Location</td>
-            <td>@restaurant.Cuisine</td>
-            <td><a asp-page="./Edit" asp-route-Id="@restaurant.Id">
-            @*<i class="glyphicon glyphicon-edit"></i>*@    Edit</a></td>
+            <th>Name</th>
+            <th>Location</th>
+            <th>Cuisine</th>
+            <th>Actions</th>
         </tr>
 
-    }
-</table>
+        @foreach (var restaurant in Model.Restaurants)
+        {
+            <tr>
+                <td><a asp-page="./Detail" asp-route-Id="@restaurant.Id">@restaurant.Name</a> </td>
+                <td>@restaurant.Location</td>
+                <td>@restaurant.Cuisine</td>
+                <td>
+                    <a asp-page="./Edit" asp-route-Id="@restaurant.Id">
+                         Edit
+                    </a>
+                    <a asp-page="./Delete" asp-route-Id="@restaurant.Id">
+                        Delete
+                    </a>
+                </td>
+            </tr>
+
+        }
+    </table>
 }
 else
 {
@@ -52,3 +66,15 @@ else
         No Restaurants Found
     </div>
 }
+
+@*@foreach(var item in Model.Restaurants)
+{
+    <partial name="_Summary" model="item"/>
+}*@
+
+@*@section footer
+{
+    <div>
+        This is Home Address
+    </div>
+}*@
